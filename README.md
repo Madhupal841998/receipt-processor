@@ -13,8 +13,6 @@
 
 ## 📁 Project Structure
 
-```
-
 receipt-processor/
 │
 ├── backend/               # Node.js backend with OCR and file upload APIs
