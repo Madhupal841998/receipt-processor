@@ -1,0 +1,26 @@
+<div class="file-upload-container">
+    <input type="file" id="receiptFile" (change)="onFileSelected($event)" accept=".pdf,.jpg,.jpeg,.png"
+        style="display: none;" />
+    <label for="receiptFile" class="file-upload-label">
+        <div class="upload-area" [class.dragover]="isDragging" (drop)="onDrop($event)" (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave($event)">
+            <div class="upload-icon">
+                <svg viewBox="0 0 24 24" width="48" height="48">
+                    <path fill="currentColor"
+                        d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                </svg>
+            </div>
+            <p class="upload-text">Drag & drop your receipt here or click to browse</p>
+            <p class="upload-hint">Supports PDF, JPG, PNG (max 10MB)</p>
+        </div>
+    </label>
+    <div *ngIf="isUploading" class="upload-progress">
+        <div class="progress-bar" [style.width.%]="uploadProgress"></div>
+    </div>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="receipt-detail-container">
+    <button class="back-button" routerLink="/receipts">
+        <svg viewBox="0 0 24 24" width="16" height="16">
+            <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+        </svg>
+        Back to all receipts
+    </button>
+
+    <div *ngIf="isLoading" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <div *ngIf="!isLoading && receipt" class="receipt-detail-card">
+        <div class="receipt-header">
+            <div class="merchant-info">
+                <h2>{{ receipt.merchant_name || 'Unknown Merchant' }}</h2>
+                <p class="receipt-date">{{ receipt.purchased_at | date:'fullDate' }}</p>
+            </div>
+            <div class="total-amount">
+                <span class="amount-label">Total</span>
+                <span class="amount">${{ receipt.total_amount | number:'1.2-2' }}</span>
+            </div>
+        </div>
+
+        <div class="receipt-meta">
+            <div class="meta-item">
+                <span class="meta-label">Payment Method</span>
+                <span class="meta-value">{{ receipt.payment_method || 'Unknown' }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Subtotal</span>
+                <span class="meta-value">${{ receipt.subtotal_amount | number:'1.2-2' }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Tax</span>
+                <span class="meta-value">${{ receipt.tax_amount | number:'1.2-2' }}</span>
+            </div>
+        </div>
+
+        <div class="items-section">
+            <h3>Items</h3>
+            <div class="items-list">
+                <div *ngFor="let item of receipt.extracted_data?.items || []" class="item-row">
+                    <span class="item-quantity">{{ item.quantity }} ×</span>
+                    <span class="item-description">{{ item.description }}</span>
+                    <span class="item-price">${{ item.price | number:'1.2-2' }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="receipt.file_type === 'application/pdf'" class="receipt-preview">
+            <a [href]="getPdfFile(receipt)" type="application/pdf" width="100%" height="500px" target="_blank">View PDF</a>
+        </div>
+        <div *ngIf="receipt.file_type?.startsWith('image/')" class="receipt-preview">
+            <img [src]="receipt.file_url" alt="Receipt image" class="receipt-image">
+        </div>
+    </div>
+</div>

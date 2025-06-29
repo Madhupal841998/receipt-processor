@@ -1,0 +1,41 @@
+<div class="stats-container">
+    <button class="back-button" routerLink="/receipts">
+      <svg viewBox="0 0 24 24" width="16" height="16">
+        <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+      </svg>
+      Back to all receipts
+    </button>
+    
+    <h2>Receipt Statistics</h2>
+    
+    <div *ngIf="isLoading" class="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+    
+    <div *ngIf="!isLoading && stats" class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">{{ stats.total_receipts }}</div>
+        <div class="stat-label">Total Receipts</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-value">${{ stats.total_spent | number:'1.2-2' }}</div>
+        <div class="stat-label">Total Spent</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-value">${{ stats.average_amount | number:'1.2-2' }}</div>
+        <div class="stat-label">Average Receipt</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-value">{{ stats.oldest_date | date:'mediumDate' }}</div>
+        <div class="stat-label">Oldest Receipt</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-value">{{ stats.newest_date | date:'mediumDate' }}</div>
+        <div class="stat-label">Newest Receipt</div>
+      </div>
+    </div>
+  </div>

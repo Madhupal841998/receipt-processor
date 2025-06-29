@@ -1,0 +1,61 @@
+# === Node.js ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+.env
+.env.*       # for .env.development, .env.production etc.
+dist/
+build/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# === Angular ===
+.angular/
+.angular-cache/
+dist/
+out-tsc/
+tmp/
+temp/
+.cache/
+*.tsbuildinfo
+
+# Angular environment files (if any sensitive envs)
+src/environments/environment*.ts
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Optional: ignore test reports
+test-results/
+karma-coverage/
+
+# Optional: Chrome user data (if used in tests)
+.chrome/
+
+# Optional: Compiled files from SASS, SCSS, LESS (if not managed by Angular CLI)
+*.css.map
+*.scssc
+
+# Optional: misc
+*.tgz
+*.bak
+*.swp
