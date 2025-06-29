@@ -13,7 +13,7 @@
 
 ## 📁 Project Structure
 
-```
+```markdown
 
 receipt-processor/
 │
